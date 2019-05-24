@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		52ACDCAD224A57B700244D77 /* MM1.c in Sources */ = {isa = PBXBuildFile; fileRef = 52ACDCAC224A57B700244D77 /* MM1.c */; };
 		52E3A4322245118500D8CC47 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 52E3A4312245118500D8CC47 /* main.c */; };
+		52F0AC2F229809D600140E0C /* MM10.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F0AC25229809D500140E0C /* MM10.c */; };
+		52F0AC30229809D600140E0C /* LireFichier.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F0AC26229809D500140E0C /* LireFichier.c */; };
+		52F0AC31229809D600140E0C /* Question3.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F0AC28229809D500140E0C /* Question3.c */; };
+		52F0AC32229809D600140E0C /* File.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F0AC2A229809D600140E0C /* File.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +32,16 @@
 		52ACDCAC224A57B700244D77 /* MM1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = MM1.c; sourceTree = "<group>"; };
 		52E3A42E2245118500D8CC47 /* Simulation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Simulation; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3A4312245118500D8CC47 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		52F0AC25229809D500140E0C /* MM10.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MM10.c; sourceTree = "<group>"; };
+		52F0AC26229809D500140E0C /* LireFichier.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LireFichier.c; sourceTree = "<group>"; };
+		52F0AC27229809D500140E0C /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		52F0AC28229809D500140E0C /* Question3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Question3.c; sourceTree = "<group>"; };
+		52F0AC29229809D500140E0C /* MM10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MM10.h; sourceTree = "<group>"; };
+		52F0AC2A229809D600140E0C /* File.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = File.c; sourceTree = "<group>"; };
+		52F0AC2B229809D600140E0C /* Question3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question3.h; sourceTree = "<group>"; };
+		52F0AC2C229809D600140E0C /* Graphe.R */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = Graphe.R; sourceTree = "<group>"; };
+		52F0AC2D229809D600140E0C /* LireFichier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LireFichier.h; sourceTree = "<group>"; };
+		52F0AC2E229809D600140E0C /* Lambda.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lambda.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,16 @@
 		52E3A4302245118500D8CC47 /* Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				52F0AC2A229809D600140E0C /* File.c */,
+				52F0AC27229809D500140E0C /* File.h */,
+				52F0AC2C229809D600140E0C /* Graphe.R */,
+				52F0AC2E229809D600140E0C /* Lambda.txt */,
+				52F0AC26229809D500140E0C /* LireFichier.c */,
+				52F0AC2D229809D600140E0C /* LireFichier.h */,
+				52F0AC25229809D500140E0C /* MM10.c */,
+				52F0AC29229809D500140E0C /* MM10.h */,
+				52F0AC28229809D500140E0C /* Question3.c */,
+				52F0AC2B229809D600140E0C /* Question3.h */,
 				52E3A4312245118500D8CC47 /* main.c */,
 				52ACDCAB224A57B700244D77 /* MM1.h */,
 				52ACDCAC224A57B700244D77 /* MM1.c */,
@@ -123,8 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F0AC30229809D600140E0C /* LireFichier.c in Sources */,
 				52E3A4322245118500D8CC47 /* main.c in Sources */,
 				52ACDCAD224A57B700244D77 /* MM1.c in Sources */,
+				52F0AC32229809D600140E0C /* File.c in Sources */,
+				52F0AC31229809D600140E0C /* Question3.c in Sources */,
+				52F0AC2F229809D600140E0C /* MM10.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
