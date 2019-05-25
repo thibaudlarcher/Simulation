@@ -33,7 +33,7 @@
 //typedef struct Element Element;
 
 typedef struct Event{
-    int serveur;
+    int serveur;    //Pour la file MM10 et MM10min
     int type;
     double date;
     int etat;

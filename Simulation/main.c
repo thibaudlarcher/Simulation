@@ -29,9 +29,11 @@ int main(int argc, const char * argv[]) {
     }
     fclose(F2);
 //    Question 3
-//    FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps3.txt", "w+");
-//    simulation(F1);
-//    fclose(F1);
+    FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps3.txt", "w+");
+    for (int i = 0; i<L.size; i++) {
+        simulationMM10min(F3,L.tab[i]);
+    }
+    fclose(F3);
     freeL(L);
     return 0;
 }

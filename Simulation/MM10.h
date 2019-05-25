@@ -6,8 +6,8 @@
 ////  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
 ////
 //
-#ifndef MM1_h
-#define MM1_h
+#ifndef MM10_h
+#define MM10_h
 #include <stdio.h>
 #include "File.h"
 //Utile ?
@@ -39,4 +39,4 @@ event ExtraireMM10(void);
 
 void simulationMM10(FILE *F1,int Lambda);
 
-#endif /* MM1_h */
+#endif /* MM10_h */
