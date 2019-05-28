@@ -34,7 +34,7 @@ double tempsMoyenAttenteMM10 = 0.;
 
 //Tableau pour 90 percenttile
 double TempAttenteMM10[MAXEVENT];
-
+int size = 0;
 echeancier EchMM10;
 void réinitialisationMM10(){
     tempsMM10 = 0;
@@ -46,6 +46,7 @@ void réinitialisationMM10(){
     cumuleAttenteMM10 = 0;
     nbservUtilMM10 = 0;
     tempsMoyenAttenteMM10 = 0.;
+    size = 0;
     for (int i = 0; i<10; i++) {
         ServeurMM10[i] = 0;
     }
@@ -182,6 +183,9 @@ void Service_EventMM10(event e){
 void simulationMM10(FILE * F1,int Lambda){
     printf("Lambda %d \n",Lambda);
     réinitialisationMM10();
+    for (int i = 0; i<MAXEVENT; i++) {
+        TempAttenteMM10[i]=0 ;
+    }
     long double Oldmoyen=0;
     long double moyen=0;
     Init_EchMM10();
@@ -195,16 +199,26 @@ void simulationMM10(FILE * F1,int Lambda){
         //Temps dans le systéme
         Oldmoyen = moyen;
         moyen = cumuleMM10/tempsMM10;
-        //printf("%d %d\n",nnMM10,nMM10);
+        
+        //Ajout des valeurs dans tableau 90tile
+        for (int i = 0; i<nnMM10; i++) {
+            TempAttenteMM10[size+i]+=(e.date - tempsMM10) ;
+        }
+        
         if(e.type == 0){
             
             Arrive_EventMM10(e,Lambda);
             
         }
         if (e.type == 1) {
+            //1 personne sort de l'attente
+            size++;
             cumuleAttenteMM10++;
             Service_EventMM10(e);
         }
+    }
+    for (int i = 0; i<size; i++) {
+        printf("%f \n",TempAttenteMM10[i]);
     }
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen);
     fprintf(F1, "%d %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10);
