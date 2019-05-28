@@ -28,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		529BC0EE229D78E4003EC571 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		52ACDCAB224A57B700244D77 /* MM1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MM1.h; sourceTree = "<group>"; };
 		52ACDCAC224A57B700244D77 /* MM1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = MM1.c; sourceTree = "<group>"; };
 		52E3A42E2245118500D8CC47 /* Simulation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Simulation; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +88,7 @@
 				52E3A4312245118500D8CC47 /* main.c */,
 				52ACDCAB224A57B700244D77 /* MM1.h */,
 				52ACDCAC224A57B700244D77 /* MM1.c */,
+				529BC0EE229D78E4003EC571 /* .gitignore */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";

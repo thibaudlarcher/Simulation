@@ -13,16 +13,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <stdio.h>
 #include "File.h"
-double tempsMM1 = 0;
-long int nMM1 = 0;
-int compteurMM1 = 0;
-double cumuleMM1 = 0;
-double nmoyenMM1 = 0;
 
-long int nnMM1=0;
-double cumuleAttenteMM1 = 0;
-double tempsMoyenAttenteMM1 = 0.;
-echeancier EchMM1;
 void réinitialisationMM1(void);
 void Init_EchMM1(void);
 void Arrive_EventMM1(event e,int Lambda);

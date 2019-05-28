@@ -7,7 +7,21 @@
 //
 
 #include "MM10min.h"
+double tempsMM10min = 0;
+long int nMM10min = 0; //Personne dans le systeme
+long int nnMM10min=0;
+int compteurMM10min = 0;
+double cumuleMM10min = 0;
+double nmoyenMM10min = 0;
+double cumuleAttenteMM10min = 0;
 
+int fileServeurMM10min[10];  //Taille de la file pour chaque serveur
+int ServeurMM10min[10];     //vaut 0 ou 1 si le serveur est disponible
+int nbservUtilMM10min = 0;
+double tempsMoyenAttenteMM10min = 0.;
+
+
+echeancier EchMM10min;
 void réinitialisationMM10min(){
     tempsMM10min = 0;
     nMM10min = 0; //Personne dans le systeme

@@ -7,7 +7,15 @@
 //
 
 #include "MM1.h"
-
+double tempsMM1 = 0;
+long int nMM1 = 0;
+int compteurMM1 = 0;
+double cumuleMM1 = 0;
+long int nnMM1=0;
+double nmoyenMM1 = 0;
+double cumuleAttenteMM1 = 0;
+double tempsMoyenAttenteMM1 = 0.;
+echeancier EchMM1;
 void reinitilisationMM1(){
     tempsMM1 = 0;
     nMM1 = 0;
@@ -32,7 +40,7 @@ void Ajouter_EchMM1(event e){
     if(EchMM1.taille < MAXEVENT){
         EchMM1.Tab[EchMM1.taille] = e;
         EchMM1.taille++;
-//        printf("Taille = %d \n",EchMM1.taille);
+        //        printf("Taille = %d \n",EchMM1.taille);
     }
     else {//printf("Echeancier Plein \n");
         exit(1);
@@ -128,9 +136,9 @@ void simulationMM1(FILE * F1,int Lambda){
     while (Condition_arret2(Oldmoyen,moyen,compteurMM1,tempsMM1)==0) {
         e =ExtraireMM1();
         cumuleMM1 += (e.date -tempsMM1)*nMM1;
-       
+        
         tempsMoyenAttenteMM1 += (e.date - tempsMM1)*nnMM1;
-//        printf("%f \n",cumuleMM1);
+        //        printf("%f \n",cumuleMM1);
         
         Oldmoyen = moyen;
         moyen = cumuleMM1/tempsMM1;
