@@ -178,7 +178,8 @@ void Service_EventMM10(event e){
 
 }
 
-
+void trie(){
+}
 
 void simulationMM10(FILE * F1,int Lambda){
     printf("Lambda %d \n",Lambda);
@@ -206,9 +207,7 @@ void simulationMM10(FILE * F1,int Lambda){
         }
         
         if(e.type == 0){
-            
             Arrive_EventMM10(e,Lambda);
-            
         }
         if (e.type == 1) {
             //1 personne sort de l'attente
@@ -218,9 +217,6 @@ void simulationMM10(FILE * F1,int Lambda){
         }
     }
     printf("%d \n",size);
-//    for (int i = 0; i<size; i++) {
-//        printf("%f \n",TempAttenteMM10[i]);
-//    }
     int k = 0;
     double tmp = 0;
     for (int i = 0; i<size; i++) {
