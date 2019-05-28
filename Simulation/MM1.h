@@ -17,8 +17,9 @@ double tempsMM1 = 0;
 long int nMM1 = 0;
 int compteurMM1 = 0;
 double cumuleMM1 = 0;
-long int nnMM1=0;
 double nmoyenMM1 = 0;
+
+long int nnMM1=0;
 double cumuleAttenteMM1 = 0;
 double tempsMoyenAttenteMM1 = 0.;
 echeancier EchMM1;

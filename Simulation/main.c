@@ -25,13 +25,13 @@ int main(int argc, const char * argv[]) {
     FILE* F2 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps2.txt", "w+");
     for (int i = 0; i<L.size; i++) {
 //        printf("%d \n",L.tab[i]);
-        simulationMM1(F2,L.tab[i]);
+//        simulationMM1(F2,L.tab[i]);
     }
     fclose(F2);
 //    Question 3
     FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps3.txt", "w+");
     for (int i = 0; i<L.size; i++) {
-        simulationMM10min(F3,L.tab[i]);
+//        simulationMM10min(F3,L.tab[i]);
     }
     fclose(F3);
     freeL(L);

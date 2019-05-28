@@ -94,7 +94,6 @@ event ExtraireMM10(){
 
 void Arrive_EventMM10(event e,int Lambda){
     nnMM10++;
-    nmoyenMM10+=nMM10;
 //    printf("execute EC \n");
     nMM10++;
     event e1;
@@ -106,6 +105,10 @@ void Arrive_EventMM10(event e,int Lambda){
     Ajouter_EchMM10(e1);
 
     if(nMM10>=1 && nMM10<=10){
+        //client plus en attente
+        nnMM10--;
+        //tempsMoyenAttenteMM10 += 0.0;
+        
         nbservUtilMM10++;
         int serv = -1;
         for (int i =0; i<N; i++) {
@@ -135,6 +138,8 @@ void Service_EventMM10(event e){
         nbservUtilMM10--;
         ServeurMM10[e.serveur] = 0;
         if (nMM10>nbservUtilMM10){
+            nnMM10--;
+            //on recupere le temps d'attente
             nbservUtilMM10++;
             event e1;
             ServeurMM10[e.serveur] = 1;
@@ -169,18 +174,20 @@ void simulationMM10(FILE * F1,int Lambda){
         e =ExtraireMM10();
         
         cumuleMM10 += (e.date -tempsMM10)*nMM10;
-        
+        tempsMoyenAttenteMM10 +=(e.date - tempsMM10)*nnMM10;
         //Temps dans le systéme
         Oldmoyen = moyen;
         moyen = cumuleMM10/tempsMM10;
-        
+        //printf("%d %d\n",nnMM10,nMM10);
         if(e.type == 0){
+            
             Arrive_EventMM10(e,Lambda);
+            
         }
         if (e.type == 1) {
             Service_EventMM10(e);
         }
     }
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf n moyen %f iteration %ld\n",tempsMoyenAttenteMM10,moyen,nmoyenMM10/nnMM10,nnMM10);
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/tempsMM10,moyen);
 }
 

@@ -13,7 +13,6 @@
 //Utile ?
 double tempsMM10 = 0;
 long int nMM10 = 0; //Personne dans le systeme
-long int nnMM10=0;
 int compteurMM10 = 0;
 double cumuleMM10 = 0;
 double nmoyenMM10 = 0;
@@ -22,8 +21,11 @@ double cumuleAttenteMM10 = 0;
 
 int ServeurMM10[10];
 int nbservUtilMM10 = 0;
+long int nnMM10=0;
 double tempsMoyenAttenteMM10 = 0.;
 
+//Tableau pour 90 percenttile
+double TempAttenteMM10[MAXEVENT];
 
 echeancier EchMM10;
 void réinitialisationMM10(void);
