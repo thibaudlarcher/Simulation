@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps1.txt", "w+");
     for (int i = 0; i<L.size; i++) {
         //printf("%d \n",L.tab[i]);
-        simulationMM10(F1,L.tab[i]);
+//        simulationMM10(F1,L.tab[i]);
     }
     fclose(F1);
 //    Question 2
@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
 //    Question 3
     FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Projet/Simulation/Temps3.txt", "w+");
     for (int i = 0; i<L.size; i++) {
-//        simulationMM10min(F3,L.tab[i]);
+        simulationMM10min(F3,L.tab[i]);
     }
     fclose(F3);
     freeL(L);

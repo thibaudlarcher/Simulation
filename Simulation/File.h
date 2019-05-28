@@ -48,4 +48,5 @@ typedef struct Echeancier{
 void initialisePID(void);
 double Exponnentielle(float tab);
 int Condition_arret(long double old,long double new ,int compteur, int temps);
+int Condition_arret2(long double old,long double new ,int compteur, int temps);
 #endif /* File_h */

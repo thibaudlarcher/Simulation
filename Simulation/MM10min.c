@@ -101,6 +101,7 @@ void Arrive_EventMM10min(event e,int Lambda){
     Ajouter_EchMM10min(e1);
     
     if(fileServeurMM10min[j] == 1){
+        nnMM10min--;
         ServeurMM10min[j]=1;
         event e2;
         e2.serveur=j;
@@ -118,6 +119,7 @@ void Service_EventMM10min(event e){
         fileServeurMM10min[e.serveur]--;
         ServeurMM10min[e.serveur] = 0;
         if (fileServeurMM10min[e.serveur]!=0){
+            nnMM10min--;
             event e1;
             ServeurMM10min[e.serveur] = 1;
             e1.serveur = e.serveur;
@@ -154,14 +156,15 @@ void simulationMM10min(FILE * F1,int Lambda){
         //Temps dans le systéme
         Oldmoyen = moyen;
         moyen = cumuleMM10min/tempsMM10min;
-        
+        tempsMoyenAttenteMM10min+= (e.date -tempsMM10min)*nnMM10min;
         if(e.type == 0){
             Arrive_EventMM10min(e,Lambda);
         }
         if (e.type == 1) {
+            cumuleAttenteMM10min++;
             Service_EventMM10min(e);
         }
     }
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf n moyen %f iteration %ld\n",tempsMoyenAttenteMM10min,moyen,nmoyenMM10min/nnMM10min,nnMM10min);
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10min/cumuleAttenteMM10min,moyen);
 }
 

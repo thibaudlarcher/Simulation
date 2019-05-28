@@ -62,15 +62,11 @@ void Arrive_EventMM1(event e,int Lambda){
     event e1;
     e1.type = 0;
     e1.etat = 0;
-    
-    
-    
-    
-    
     e1.date = e.date + tmp;
     Ajouter_EchMM1(e1);
     
     if(nMM1==1){
+        nnMM1--;
         event e2;
         e2.type = 1;
         e2.date = e.date + Exponnentielle(Mu);
@@ -84,11 +80,11 @@ void Service_EventMM1(event e){
     if (nMM1>0){
         nMM1--;
         if (nMM1>0){
+            nnMM1--;
             event e1;
             e1.type = 1;
             e1.date = e.date + Exponnentielle(Mu);
             e1.etat = 0;
-            
             Ajouter_EchMM1(e1);
         }
         tempsMM1 = e.date;
@@ -129,22 +125,27 @@ void simulationMM1(FILE * F1,int Lambda){
     Init_EchMM1();
     event e;
     initialisePID();
-    while (Condition_arret(Oldmoyen,moyen,compteurMM1,tempsMM1)==0) {
+    while (Condition_arret2(Oldmoyen,moyen,compteurMM1,tempsMM1)==0) {
         e =ExtraireMM1();
         cumuleMM1 += (e.date -tempsMM1)*nMM1;
+       
+        tempsMoyenAttenteMM1 += (e.date - tempsMM1)*nnMM1;
 //        printf("%f \n",cumuleMM1);
         
         Oldmoyen = moyen;
         moyen = cumuleMM1/tempsMM1;
         if(e.type == 0){
+            
             Arrive_EventMM1(e,Lambda);
         }
         if (e.type == 1) {
+            cumuleAttenteMM1 ++;
             Service_EventMM1(e);
+            
         }
     }
     //Multipier Par 10 pour l'ensemble du système
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf n moyen %f iteration %ld\n",tempsMoyenAttenteMM1,10*moyen,nmoyenMM1/nnMM1,nnMM1);
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM1/cumuleAttenteMM1,10*moyen);
     
 }
 

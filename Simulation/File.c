@@ -33,3 +33,14 @@ int Condition_arret(long double old,long double new,int compteur, int temps){
     }
     return 0;
 }
+//Pour la file MM1.
+int Condition_arret2(long double old,long double new,int compteur, int temps){
+    
+    if (fabs(old - new)<EPSILON && temps>100000) {
+        compteur++;
+        if (compteur<1e3) {
+            return 1;
+        }
+    }
+    return 0;
+}

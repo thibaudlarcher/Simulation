@@ -185,9 +185,10 @@ void simulationMM10(FILE * F1,int Lambda){
             
         }
         if (e.type == 1) {
+            cumuleAttenteMM10++;
             Service_EventMM10(e);
         }
     }
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/tempsMM10,moyen);
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen);
 }
 
