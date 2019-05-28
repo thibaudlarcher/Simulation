@@ -209,7 +209,7 @@ void simulationMM1(FILE * F1,int Lambda){
     int nb = sizeMM1*0.9;
     //printf("%d\n",nb );
     //Multipier Par 10 pour l'ensemble du système
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n, 90 percenttile %f",tempsMoyenAttenteMM1/cumuleAttenteMM1,10*moyen,TempAttenteMM1[nb]);
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf, 90 percenttile %f\n",tempsMoyenAttenteMM1/cumuleAttenteMM1,10*moyen,TempAttenteMM1[nb]);
     //A modifier pour percent tile
     fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM1/cumuleAttenteMM1,TempAttenteMM1[nb]);
 }

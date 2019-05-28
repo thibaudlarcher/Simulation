@@ -172,7 +172,7 @@ void Service_EventMM10(event e){
         tempsMM10 = e.date;
     }
     else {
-        printf("Pas Service \n");
+//        printf("Pas Service \n");
     }
 }
 
@@ -231,7 +231,7 @@ void quickSortMM10(double arr[], int low, int high)
 
 
 void simulationMM10(FILE * F1,int Lambda){
-    printf("Lambda %d \n",Lambda);
+//    printf("Lambda %d \n",Lambda);
     réinitialisationMM10();
     for (int i = 0; i<MAXEVENT; i++) {
         TempAttenteMM10[i]=0 ;
@@ -269,7 +269,7 @@ void simulationMM10(FILE * F1,int Lambda){
     }
     quickSortMM10(TempAttenteMM10,0,sizeMM10-1);
     int nb = sizeMM10*0.9;
-    printf("%d\n",nb );
+//    printf("%d\n",nb );
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf 90percentile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[nb]);
     fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[nb]);
 }

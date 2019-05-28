@@ -10,7 +10,7 @@
 
 void initialisePID(){
     pid_t pid = getpid();
-    printf("PID : %d\n",pid);
+//    printf("PID : %d\n",pid);
     srandom(pid);
 }
 

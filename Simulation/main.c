@@ -12,7 +12,8 @@
 #include "MM10min.h"
 int main(int argc, const char * argv[]) {
     LAMBDA L;
-    L = lirefichier("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Lambda.txt");
+    L = lirefichier(argv[1]);
+//    L = lirefichier("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Lambda.txt");
     int i = 0;
     for (i = 0; i < L.size; i++) {
         printf("%d \n",L.tab[i]);
@@ -20,6 +21,8 @@ int main(int argc, const char * argv[]) {
     printf("======== MM10 ========\n");
 //    Question 1
     FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps1.txt", "w+");
+//    FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps1.txt", "w+");
+//    FILE* F1 = fopen("Temps1.txt", "w+");
     for (i = 0; i<L.size; i++) {
         //printf("%d \n",L.tab[i]);
         simulationMM10(F1,L.tab[i]);
@@ -28,6 +31,9 @@ int main(int argc, const char * argv[]) {
      printf("======== NMM1 ========\n");
 //    Question 2
     FILE* F2 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps2.txt", "w+");
+//    FILE* F2 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps2.txt", "w+");
+//    Linux
+//    FILE* F2 = fopen("Temps2.txt", "w+");
     for (i = 0; i<L.size; i++) {
 //        printf("%d \n",L.tab[i]);
         simulationMM1(F2,L.tab[i]);
@@ -36,6 +42,8 @@ int main(int argc, const char * argv[]) {
      printf("======= MM10min =======\n");
 //    Question 3
     FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps3.txt", "w+");
+//    FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps3.txt", "w+");
+//    FILE* F3 = fopen("Temps3.txt", "w+");
     for (i = 0; i<L.size; i++) {
         simulationMM10min(F3,L.tab[i]);
     }
