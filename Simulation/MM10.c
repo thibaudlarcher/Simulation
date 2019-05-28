@@ -92,7 +92,7 @@ void Ajouter_EchMM10(event e){
 event ExtraireMM10(){
     int i,imin = 0;
     event min;
-    
+
     for(i = 0;i<EchMM10.taille;i++){
         if(EchMM10.Tab[i].etat == 0){
             min = EchMM10.Tab[i];
@@ -126,7 +126,7 @@ void Arrive_EventMM10(event e,int Lambda){
         //client plus en attente
         nnMM10--;
         //tempsMoyenAttenteMM10 += 0.0;
-        
+
         nbservUtilMM10++;
         int serv = -1;
         for (int i =0; i<N; i++) {
@@ -147,7 +147,7 @@ void Arrive_EventMM10(event e,int Lambda){
 
     }
     tempsMM10 = e.date;
-    
+
 }
 void Service_EventMM10(event e){
     //printf("execute SE \n");
@@ -168,15 +168,67 @@ void Service_EventMM10(event e){
             e1.etat = 0;
             Ajouter_EchMM10(e1);
         }
-            
+
         tempsMM10 = e.date;
     }
     else {
         printf("Pas Service \n");
     }
-
-
 }
+
+
+
+
+void swap(double* a, double* b)
+{
+    double t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/* This function takes last element as pivot, places
+   the pivot element at its correct position in sorted
+    array, and places all smaller (smaller than pivot)
+   to left of pivot and all greater elements to right
+   of pivot */
+int partition (double arr[], int low, int high)
+{
+    int pivot = arr[high];    // pivot
+    int i = (low - 1);  // Index of smaller element
+
+    for (int j = low; j <= high- 1; j++)
+    {
+        // If current element is smaller than or
+        // equal to pivot
+        if (arr[j] <= pivot)
+        {
+            i++;    // increment index of smaller element
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+/* The main function that implements QuickSort
+ arr[] --> Array to be sorted,
+  low  --> Starting index,
+  high  --> Ending index */
+void quickSort(double arr[], int low, int high)
+{
+    if (low < high)
+    {
+        /* pi is partitioning index, arr[p] is now
+           at right place */
+        int pi = partition(arr, low, high);
+
+        // Separately sort elements before
+        // partition and after partition
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
 
 void trie(){
 }
@@ -194,20 +246,22 @@ void simulationMM10(FILE * F1,int Lambda){
     initialisePID();
     while (Condition_arret(Oldmoyen,moyen,compteurMM10,tempsMM10)==0) {
         e =ExtraireMM10();
-        
+
         cumuleMM10 += (e.date -tempsMM10)*nMM10;
         tempsMoyenAttenteMM10 +=(e.date - tempsMM10)*nnMM10;
         //Temps dans le systéme
         Oldmoyen = moyen;
         moyen = cumuleMM10/tempsMM10;
-        
+
         //Ajout des valeurs dans tableau 90tile
         for (int i = 0; i<nnMM10; i++) {
             TempAttenteMM10[size+i]+=(e.date - tempsMM10) ;
         }
-        
+
         if(e.type == 0){
+
             Arrive_EventMM10(e,Lambda);
+
         }
         if (e.type == 1) {
             //1 personne sort de l'attente
@@ -216,25 +270,12 @@ void simulationMM10(FILE * F1,int Lambda){
             Service_EventMM10(e);
         }
     }
-    printf("%d \n",size);
-    int k = 0;
-    double tmp = 0;
-    for (int i = 0; i<size; i++) {
-        k = i;
-        for (int j = i; j<size; j++) {
-            if(TempAttenteMM10[k] > TempAttenteMM10[j])
-                k = j;
-        }
-        tmp = TempAttenteMM10[i];
-        TempAttenteMM10[i]=TempAttenteMM10[k];
-        TempAttenteMM10[k] = tmp;
-        
+    quickSort(TempAttenteMM10,0,size-1);
+    for (i = 0; i<size; i++) {
+        printf("%f \n",TempAttenteMM10[i]);
     }
-//    for (int i = 0; i<size; i++) {
-//        printf("%f \n",TempAttenteMM10[i]);
-//    }
-    int test = size * 90 / 100;
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf,90 percenttile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[test]);
-    fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[test]);
+    int nb = size*0.9;
+    //printf("%d\n",nb );
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf 90percentile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[nb]);
+    fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[nb]);
 }
-
