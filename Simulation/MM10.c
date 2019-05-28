@@ -34,7 +34,7 @@ double tempsMoyenAttenteMM10 = 0.;
 
 //Tableau pour 90 percenttile
 double TempAttenteMM10[MAXEVENT];
-int size = 0;
+int sizeMM10 = 0;
 echeancier EchMM10;
 void réinitialisationMM10(){
     tempsMM10 = 0;
@@ -46,7 +46,7 @@ void réinitialisationMM10(){
     cumuleAttenteMM10 = 0;
     nbservUtilMM10 = 0;
     tempsMoyenAttenteMM10 = 0.;
-    size = 0;
+    sizeMM10 = 0;
     for (int i = 0; i<10; i++) {
         ServeurMM10[i] = 0;
     }
@@ -179,7 +179,7 @@ void Service_EventMM10(event e){
 
 
 
-void swap(double* a, double* b)
+void swapMM10(double* a, double* b)
 {
     double t = *a;
     *a = *b;
@@ -191,9 +191,9 @@ void swap(double* a, double* b)
     array, and places all smaller (smaller than pivot)
    to left of pivot and all greater elements to right
    of pivot */
-int partition (double arr[], int low, int high)
+int partitionMM10 (double arr[], int low, int high)
 {
-    int pivot = arr[high];    // pivot
+    double pivot = arr[high];    // pivot
     int i = (low - 1);  // Index of smaller element
 
     for (int j = low; j <= high- 1; j++)
@@ -203,10 +203,10 @@ int partition (double arr[], int low, int high)
         if (arr[j] <= pivot)
         {
             i++;    // increment index of smaller element
-            swap(&arr[i], &arr[j]);
+            swapMM10(&arr[i], &arr[j]);
         }
     }
-    swap(&arr[i + 1], &arr[high]);
+    swapMM10(&arr[i + 1], &arr[high]);
     return (i + 1);
 }
 
@@ -214,24 +214,21 @@ int partition (double arr[], int low, int high)
  arr[] --> Array to be sorted,
   low  --> Starting index,
   high  --> Ending index */
-void quickSort(double arr[], int low, int high)
+void quickSortMM10(double arr[], int low, int high)
 {
     if (low < high)
     {
         /* pi is partitioning index, arr[p] is now
            at right place */
-        int pi = partition(arr, low, high);
+        int pi = partitionMM10(arr, low, high);
 
         // Separately sort elements before
         // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        quickSortMM10(arr, low, pi - 1);
+        quickSortMM10(arr, pi + 1, high);
     }
 }
 
-
-void trie(){
-}
 
 void simulationMM10(FILE * F1,int Lambda){
     printf("Lambda %d \n",Lambda);
@@ -255,7 +252,7 @@ void simulationMM10(FILE * F1,int Lambda){
 
         //Ajout des valeurs dans tableau 90tile
         for (int i = 0; i<nnMM10; i++) {
-            TempAttenteMM10[size+i]+=(e.date - tempsMM10) ;
+            TempAttenteMM10[sizeMM10+i]+=(e.date - tempsMM10) ;
         }
 
         if(e.type == 0){
@@ -265,17 +262,14 @@ void simulationMM10(FILE * F1,int Lambda){
         }
         if (e.type == 1) {
             //1 personne sort de l'attente
-            size++;
+            sizeMM10++;
             cumuleAttenteMM10++;
             Service_EventMM10(e);
         }
     }
-    quickSort(TempAttenteMM10,0,size-1);
-    for (i = 0; i<size; i++) {
-        printf("%f \n",TempAttenteMM10[i]);
-    }
-    int nb = size*0.9;
-    //printf("%d\n",nb );
+    quickSortMM10(TempAttenteMM10,0,sizeMM10-1);
+    int nb = sizeMM10*0.9;
+    printf("%d\n",nb );
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf 90percentile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[nb]);
     fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[nb]);
 }

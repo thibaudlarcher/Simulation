@@ -16,7 +16,6 @@ void Ajouter_EchMM10(event e);
 void Init_EchMM10(void);
 void Arrive_EventMM10(event e,int Lambda);
 void Service_EventMM10(event e);
-void trie();
 
 event ExtraireMM10(void);
 
