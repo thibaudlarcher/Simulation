@@ -217,10 +217,28 @@ void simulationMM10(FILE * F1,int Lambda){
             Service_EventMM10(e);
         }
     }
+    printf("%d \n",size);
+//    for (int i = 0; i<size; i++) {
+//        printf("%f \n",TempAttenteMM10[i]);
+//    }
+    int k = 0;
+    double tmp = 0;
     for (int i = 0; i<size; i++) {
-        printf("%f \n",TempAttenteMM10[i]);
+        k = i;
+        for (int j = i; j<size; j++) {
+            if(TempAttenteMM10[k] > TempAttenteMM10[j])
+                k = j;
+        }
+        tmp = TempAttenteMM10[i];
+        TempAttenteMM10[i]=TempAttenteMM10[k];
+        TempAttenteMM10[k] = tmp;
+        
     }
-    printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen);
-    fprintf(F1, "%d %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10);
+//    for (int i = 0; i<size; i++) {
+//        printf("%f \n",TempAttenteMM10[i]);
+//    }
+    int test = size * 90 / 100;
+    printf("Temps moyen Attente %f Temps moyen Systeme %Lf,90 percenttile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[test]);
+    fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[test]);
 }
 
