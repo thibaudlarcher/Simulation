@@ -207,5 +207,6 @@ void simulationMM10(FILE * F1,int Lambda){
         }
     }
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen);
+    fprintf(F1, "%d %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10);
 }
 

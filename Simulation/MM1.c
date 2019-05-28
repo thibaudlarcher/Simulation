@@ -154,6 +154,7 @@ void simulationMM1(FILE * F1,int Lambda){
     }
     //Multipier Par 10 pour l'ensemble du système
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf\n",tempsMoyenAttenteMM1/cumuleAttenteMM1,10*moyen);
-    
+    //A modifier pour percent tile
+    fprintf(F1, "%d %f\n",Lambda,tempsMoyenAttenteMM1/cumuleAttenteMM1);
 }
 
