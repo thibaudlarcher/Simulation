@@ -4,6 +4,9 @@ LDFLAGS=
 EXEC=main
 
 all: $(EXEC)
+	./main Lambda.txt
+	Rscript Graphe.R
+	Rscript Graphe2.R
 
 main : LireFichier.o File.o MM10.o MM1.o MM10min.o main.o 
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -25,6 +28,10 @@ MM10min.o : MM10min.c MM10min.h
 
 main.o : main.c LireFichier.h
 	$(CC) -o $@ -c $< $(CFLAGS)
+
+Graphe: 
+	Rscript Graphe.R 
+	Rscript Graphe2.R
 clean :
 	rm -f *.o
 	rm -f *.exe

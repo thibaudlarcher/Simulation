@@ -25,8 +25,9 @@ int main(int argc, const char * argv[]) {
 //    FILE* F1 = fopen("Temps1.txt", "w+");
     for (i = 0; i<L.size; i++) {
         //printf("%d \n",L.tab[i]);
-        if(L.tab[i]>=N)
-            fprintf(F1, "%d inf inf\n",L.tab[i]);
+        if(L.tab[i]>=N){
+            //fprintf(F1, "%d inf inf\n",L.tab[i]);
+        }
         else
             simulationMM10(F1,L.tab[i]);
     }
@@ -39,8 +40,9 @@ int main(int argc, const char * argv[]) {
 //    FILE* F2 = fopen("Temps2.txt", "w+");
     for (i = 0; i<L.size; i++) {
 //        printf("%d \n",L.tab[i]);
-        if(L.tab[i]>=N)
-            fprintf(F2, "%d inf inf\n",L.tab[i]);
+        if(L.tab[i]>=N){
+            //fprintf(F2, "%d inf inf\n",L.tab[i]);
+        }
         else{
 //            simulationMM1(F2,L.tab[i]);
         }
@@ -52,10 +54,11 @@ int main(int argc, const char * argv[]) {
 //    FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps3.txt", "w+");
 //    FILE* F3 = fopen("Temps3.txt", "w+");
     for (i = 0; i<L.size; i++) {
-        if(L.tab[i]>=N)
-            fprintf(F3, "%d inf inf\n",L.tab[i]);
+        if(L.tab[i]>=N){
+//            fprintf(F3, "%d inf inf\n",L.tab[i]);
+        }
         else{
-//            simulationMM10min(F3,L.tab[i]);
+            simulationMM10min(F3,L.tab[i]);
         }
     }
     fclose(F3);
