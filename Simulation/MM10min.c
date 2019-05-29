@@ -233,6 +233,7 @@ void simulationMM10min(FILE * F1,int Lambda){
             Service_EventMM10min(e);
         }
     }
+    
     quickSortMM10min(TempAttenteMM10min,0,sizeMM10min-1);
     int nb = sizeMM10min*0.9;
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf, 90 percentile %f\n",tempsMoyenAttenteMM10min/cumuleAttenteMM10min,moyen,TempAttenteMM10min[nb]);

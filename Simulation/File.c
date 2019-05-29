@@ -25,7 +25,7 @@ double Exponnentielle(float tab){
 
 int Condition_arret(long double old,long double new,int compteur, int temps){
     if (fabs(old - new)<EPSILON && temps>1000) {
-    //if (fabs(old - new)<EPSILON && temps>30000) {
+    //if (fabs(old - new)<EPSILON && temps>10000) {
         compteur++;
         if (compteur<1e3) {
             return 1;
@@ -35,8 +35,8 @@ int Condition_arret(long double old,long double new,int compteur, int temps){
 }
 //Pour la file MM1.
 int Condition_arret2(long double old,long double new,int compteur, int temps){
-    
-    if (fabs(old - new)<EPSILON && temps>100000) {
+    if (fabs(old - new)<EPSILON && temps>10000) {
+//    if (fabs(old - new)<EPSILON && temps>100000) {
         compteur++;
         if (compteur<1e3) {
             return 1;
