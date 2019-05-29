@@ -1,10 +1,4 @@
-//
-//  MM1.h
-//  Simulation
-//
-//  Created by jean-charles SOTTAS on 23/05/2019.
-//  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
-//
+
 
 #ifndef MM1_h
 #define MM1_h

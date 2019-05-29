@@ -1,11 +1,4 @@
-////
-////  MM1.h
-////  Simulation
-////
-////  Created by jean-charles SOTTAS on 26/03/2019.
-////  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
-////
-//
+
 #ifndef MM10_h
 #define MM10_h
 #include <stdio.h>

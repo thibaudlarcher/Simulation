@@ -1,10 +1,4 @@
-//
-//  Question3.c
-//  Simulation
-//
-//  Created by jean-charles SOTTAS on 23/05/2019.
-//  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
-//
+
 
 #include "MM10min.h"
 double tempsMM10min = 0;
@@ -53,33 +47,16 @@ void Ajouter_EchMM10min(event e){
     if(EchMM10min.taille < MAXEVENT){
         EchMM10min.Tab[EchMM10min.taille] = e;
         EchMM10min.taille++;
-        //printf("Taille = %d \n",Ech.taille);
     }
     else {printf("Echeancier Plein \n");
         exit(1);
     }
 }
 
-
-//void Affiche_echeancier(){
-//    event e;
-//
-//    printf("--> temps %f et N = %ld taille : %d [",temps,n,Ech.taille);
-//    for (int i = 0; i<Ech.taille; i++) {
-//        e = Ech.Tab[i];
-//
-//        if(e.type ==0)
-//            printf(" (AC %lf,%d",e.date,e.etat);
-//        if(e.type ==1)
-//            printf(" (FS %lf,%d",e.date,e.etat);
-//    }
-//    printf("] \n \n");
-//}
-
 event ExtraireMM10min(){
     int i,imin = 0;
     event min;
-    
+
     for(i = 0;i<EchMM10min.taille;i++){
         if(EchMM10min.Tab[i].etat == 0){
             min = EchMM10min.Tab[i];
@@ -100,21 +77,21 @@ event ExtraireMM10min(){
 void Arrive_EventMM10min(event e,int Lambda){
     nnMM10min++;
     nmoyenMM10min+=nMM10min;
-    
+
     nMM10min++;    int j = 0;
     for (int i =0; i<N; i++) {
         if(fileServeurMM10min[i]<fileServeurMM10min[j]){
             j=i;
         }
     }
-    
+
     event e1;
     fileServeurMM10min[j]++;
     e1.type = 0;
     e1.etat = 0;
     e1.date = e.date + Exponnentielle(Lambda);
     Ajouter_EchMM10min(e1);
-    
+
     if(fileServeurMM10min[j] == 1){
         nnMM10min--;
         ServeurMM10min[j]=1;
@@ -126,7 +103,7 @@ void Arrive_EventMM10min(event e,int Lambda){
         Ajouter_EchMM10min(e2);
     }
     tempsMM10min = e.date;
-    
+
 }
 void Service_EventMM10min(event e){
     if (fileServeurMM10min[e.serveur]>0){
@@ -143,14 +120,14 @@ void Service_EventMM10min(event e){
             e1.etat = 0;
             Ajouter_EchMM10min(e1);
         }
-        
+
         tempsMM10min = e.date;
     }
     else {
         printf("Pas Service \n");
     }
-    
-    
+
+
 }
 
 void swapMM10min(double* a, double* b)
@@ -160,23 +137,18 @@ void swapMM10min(double* a, double* b)
     *b = t;
 }
 
-/* This function takes last element as pivot, places
- the pivot element at its correct position in sorted
- array, and places all smaller (smaller than pivot)
- to left of pivot and all greater elements to right
- of pivot */
+
 int partitionMM10min (double arr[], int low, int high)
 {
-    double pivot = arr[high];    // pivot
-    int i = (low - 1);  // Index of smaller element
-    
+    double pivot = arr[high];
+    int i = (low - 1);
+
     for (int j = low; j <= high- 1; j++)
     {
-        // If current element is smaller than or
-        // equal to pivot
+
         if (arr[j] <= pivot)
         {
-            i++;    // increment index of smaller element
+            i++;
             swapMM10min(&arr[i], &arr[j]);
         }
     }
@@ -184,20 +156,15 @@ int partitionMM10min (double arr[], int low, int high)
     return (i + 1);
 }
 
-/* The main function that implements QuickSort
- arr[] --> Array to be sorted,
- low  --> Starting index,
- high  --> Ending index */
+
 void quickSortMM10min(double arr[], int low, int high)
 {
     if (low < high)
     {
-        /* pi is partitioning index, arr[p] is now
-         at right place */
+
         int pi = partitionMM10min(arr, low, high);
+
         
-        // Separately sort elements before
-        // partition and after partition
         quickSortMM10min(arr, low, pi - 1);
         quickSortMM10min(arr, pi + 1, high);
     }
@@ -213,9 +180,9 @@ void simulationMM10min(FILE * F1,int Lambda){
     initialisePID();
     while (Condition_arret(Oldmoyen,moyen,compteurMM10min,tempsMM10min)==0) {
         e =ExtraireMM10min();
-        
+
         cumuleMM10min += (e.date -tempsMM10min)*nMM10min;
-        
+
         //Temps dans le systéme
         Oldmoyen = moyen;
         moyen = cumuleMM10min/tempsMM10min;
@@ -233,10 +200,9 @@ void simulationMM10min(FILE * F1,int Lambda){
             Service_EventMM10min(e);
         }
     }
-    
+
     quickSortMM10min(TempAttenteMM10min,0,sizeMM10min-1);
     int nb = sizeMM10min*0.9;
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf, 90 percentile %f\n",tempsMoyenAttenteMM10min/cumuleAttenteMM10min,moyen,TempAttenteMM10min[nb]);
     fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10min/cumuleAttenteMM10min,TempAttenteMM10min[nb]);
 }
-

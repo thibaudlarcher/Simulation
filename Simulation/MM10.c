@@ -1,21 +1,3 @@
-////
-////  MM10.c
-////  Simulation
-////
-////  Created by jean-charles SOTTAS on 26/03/2019.
-////  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
-////
-
-
-
-//void Ecrire_Valeur(){
-//    FILE *f = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Data_Expontielle.txt","w+");
-//    for (int i = 0; i<TAILLE_MAX; i++) {
-//        fprintf(f, "%.15Lf   %.15Lf   %.15Lf\n",Valeur[i],FctRepart1[i],FctRepart2[i]);
-//    }
-//    fclose(f);
-//}
-
 
 #include "MM10.h"
 //Utile ?
@@ -66,28 +48,12 @@ void Ajouter_EchMM10(event e){
     if(EchMM10.taille < MAXEVENT){
         EchMM10.Tab[EchMM10.taille] = e;
         EchMM10.taille++;
-        //printf("Taille = %d \n",Ech.taille);
     }
     else {printf("Echeancier Plein \n");
         exit(1);
     }
 }
 
-
-//void Affiche_echeancier(){
-//    event e;
-//
-//    printf("--> temps %f et N = %ld taille : %d [",temps,n,Ech.taille);
-//    for (int i = 0; i<Ech.taille; i++) {
-//        e = Ech.Tab[i];
-//
-//        if(e.type ==0)
-//            printf(" (AC %lf,%d",e.date,e.etat);
-//        if(e.type ==1)
-//            printf(" (FS %lf,%d",e.date,e.etat);
-//    }
-//    printf("] \n \n");
-//}
 
 event ExtraireMM10(){
     int i,imin = 0;
@@ -112,20 +78,16 @@ event ExtraireMM10(){
 
 void Arrive_EventMM10(event e,int Lambda){
     nnMM10++;
-//    printf("execute EC \n");
     nMM10++;
     event e1;
-//    printf("valeur de n %d \n",n);
     e1.type = 0;
     e1.etat = 0;
     e1.date = e.date + Exponnentielle(Lambda);
-    //printf("Lambda");
     Ajouter_EchMM10(e1);
 
     if(nMM10>=1 && nMM10<=10){
         //client plus en attente
         nnMM10--;
-        //tempsMoyenAttenteMM10 += 0.0;
 
         nbservUtilMM10++;
         int serv = -1;
@@ -140,7 +102,6 @@ void Arrive_EventMM10(event e,int Lambda){
         e2.serveur=serv;
         e2.type = 1;
         e2.date = e.date + Exponnentielle(Mu);
-        //printf("Mu");
         e2.etat = 0;
 
         Ajouter_EchMM10(e2);
@@ -150,7 +111,6 @@ void Arrive_EventMM10(event e,int Lambda){
 
 }
 void Service_EventMM10(event e){
-    //printf("execute SE \n");
     if (nMM10>0){
         nMM10--;
         nbservUtilMM10--;
@@ -164,7 +124,6 @@ void Service_EventMM10(event e){
             e1.serveur = e.serveur;
             e1.type = 1;
             e1.date = e.date + Exponnentielle(Mu);
-            //printf("Mu");
             e1.etat = 0;
             Ajouter_EchMM10(e1);
         }
@@ -172,7 +131,6 @@ void Service_EventMM10(event e){
         tempsMM10 = e.date;
     }
     else {
-//        printf("Pas Service \n");
     }
 }
 
@@ -186,23 +144,18 @@ void swapMM10(double* a, double* b)
     *b = t;
 }
 
-/* This function takes last element as pivot, places
-   the pivot element at its correct position in sorted
-    array, and places all smaller (smaller than pivot)
-   to left of pivot and all greater elements to right
-   of pivot */
+
 int partitionMM10 (double arr[], int low, int high)
 {
-    double pivot = arr[high];    // pivot
-    int i = (low - 1);  // Index of smaller element
+    double pivot = arr[high];
+    int i = (low - 1);
 
     for (int j = low; j <= high- 1; j++)
     {
-        // If current element is smaller than or
-        // equal to pivot
+
         if (arr[j] <= pivot)
         {
-            i++;    // increment index of smaller element
+            i++;
             swapMM10(&arr[i], &arr[j]);
         }
     }
@@ -210,20 +163,15 @@ int partitionMM10 (double arr[], int low, int high)
     return (i + 1);
 }
 
-/* The main function that implements QuickSort
- arr[] --> Array to be sorted,
-  low  --> Starting index,
-  high  --> Ending index */
+
 void quickSortMM10(double arr[], int low, int high)
 {
     if (low < high)
     {
-        /* pi is partitioning index, arr[p] is now
-           at right place */
+
         int pi = partitionMM10(arr, low, high);
 
-        // Separately sort elements before
-        // partition and after partition
+
         quickSortMM10(arr, low, pi - 1);
         quickSortMM10(arr, pi + 1, high);
     }
@@ -231,7 +179,7 @@ void quickSortMM10(double arr[], int low, int high)
 
 
 void simulationMM10(FILE * F1,int Lambda){
-//    printf("Lambda %d \n",Lambda);
+
     réinitialisationMM10();
     for (int i = 0; i<MAXEVENT; i++) {
         TempAttenteMM10[i]=0 ;
@@ -269,7 +217,7 @@ void simulationMM10(FILE * F1,int Lambda){
     }
     quickSortMM10(TempAttenteMM10,0,sizeMM10-1);
     int nb = sizeMM10*0.9;
-//    printf("%d\n",nb );
+
     printf("Temps moyen Attente %f Temps moyen Systeme %Lf 90percentile %f\n",tempsMoyenAttenteMM10/cumuleAttenteMM10,moyen,TempAttenteMM10[nb]);
     fprintf(F1, "%d %f %f\n",Lambda,tempsMoyenAttenteMM10/cumuleAttenteMM10,TempAttenteMM10[nb]);
 }

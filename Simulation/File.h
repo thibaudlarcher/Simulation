@@ -1,10 +1,3 @@
-//
-//  File.h
-//  Simulation
-//
-//  Created by jean-charles SOTTAS on 23/05/2019.
-//  Copyright © 2019 jean-charles SOTTAS. All rights reserved.
-//
 
 #ifndef File_h
 #define File_h
@@ -19,18 +12,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-//struct Element
-//{
-//    double val;
-//    Element *suiv;
-//};
-//typedef struct List List;
-//struct List
-//{
-//    Element *p;
-//};
-//List L;
-//typedef struct Element Element;
 
 typedef struct Event{
     int serveur;    //Pour la file MM10 et MM10min
