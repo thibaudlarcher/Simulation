@@ -36,4 +36,8 @@ clean :
 	rm -f *.o
 	rm -f *.exe
 	rm -f *.h.gch
-	rm main
+	rm -f main
+	rm -f *.jpg
+	rm -f Temps1.txt
+	rm -f Temps2.txt
+	rm -f Temps3.txt
