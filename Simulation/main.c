@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
             fprintf(F1, "%d -1 -1\n",L.tab[i]);
         }
         else{
-//            simulationMM1(F2,L.tab[i]);
+           simulationMM1(F2,L.tab[i]);
         }
     }
     fclose(F2);
