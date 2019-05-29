@@ -3,7 +3,7 @@ CFLAGS=-W -Wall -ansi -pedantic
 LDFLAGS=
 EXEC=main
 
-all: $(EXEC)
+allMacOs: $(EXEC)
 	./main Lambda.txt
 	Rscript Graphe.R
 	Rscript Graphe2.R
@@ -36,3 +36,4 @@ clean :
 	rm -f *.o
 	rm -f *.exe
 	rm -f *.h.gch
+	rm main
