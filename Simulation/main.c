@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
     }
     printf("======== MM10 ========\n");
 //    Question 1
-    FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps1.txt", "w+");
+    FILE* F1 = fopen("/Users/larcher/Desktop/Simulation/Simulation/Temps1.txt", "w+");
 //    FILE* F1 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps1.txt", "w+");
 //    FILE* F1 = fopen("Temps1.txt", "w+");
     for (i = 0; i<L.size; i++) {
@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
     fclose(F1);
      printf("======== NMM1 ========\n");
 //    Question 2
-    FILE* F2 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps2.txt", "w+");
+    FILE* F2 = fopen("/Users/larcher/Desktop/Simulation/Simulation/Temps2.txt", "w+");
 //    FILE* F2 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps2.txt", "w+");
 //    Linux
 //    FILE* F2 = fopen("Temps2.txt", "w+");
@@ -50,7 +50,7 @@ int main(int argc, const char * argv[]) {
     fclose(F2);
      printf("======= MM10min =======\n");
 //    Question 3
-    FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps3.txt", "w+");
+    FILE* F3 = fopen("/Users/larcher/Desktop/Simulation/Simulation/Temps3.txt", "w+");
 //    FILE* F3 = fopen("/Users/jean-charles/Desktop/Simulation/Simulation/Simulation/Temps3.txt", "w+");
 //    FILE* F3 = fopen("Temps3.txt", "w+");
     for (i = 0; i<L.size; i++) {
